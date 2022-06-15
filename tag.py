@@ -4,7 +4,7 @@ from flask import Flask, request, render_template
 import numpy as np
 import re
 # from bs4 import BeautifulSoup
-import spacy
+#import spacy
 #import en_core_web_sm
 import nltk
 #nltk.download('punkt')
@@ -19,32 +19,10 @@ from nltk.tokenize import word_tokenize
 from joblib import load
 app = Flask(__name__)
 # Cleaning function for new question
-def remove_pos(nlp, x, pos_list):
-    """NLP cleaning function based on the POS-Tagging of the Spacy library. 
-    It allows you to keep only the Parts Of Speech listed as a parameter. 
-    Parameters
-    ----------------------------------------
-    nlp : spacy pipeline
-        Load pipeline with options.
-        ex : spacy.load('en', exclude=['tok2vec', 'ner', 'parser', 
-                                'attribute_ruler', 'lemmatizer'])
-    x : string
-        Sequence of characters to modify.
-    pos_list : list
-        List of POS to conserve.
-    ----------------------------------------
-    """
 
-    doc = nlp(x)
-    list_text_row = []
-    for token in doc:
-        if(token.pos_ in pos_list):
-            list_text_row.append(token.text)
-    join_text_row = " ".join(list_text_row)
-    join_text_row = join_text_row.lower().replace("c #", "c#")
-    return join_text_row
 
-def text_cleaner(x, nlp, pos_list, lang="english"):
+#def text_cleaner(x, nlp, pos_list, lang="english"):
+def text_cleaner(x, lang):
     """Function allowing to carry out the preprossessing on the textual data. 
         It allows you to remove extra spaces, unicode characters, 
         English contractions, links, punctuation and numbers.
@@ -64,7 +42,7 @@ def text_cleaner(x, nlp, pos_list, lang="english"):
     ----------------------------------------
     """
     # Remove POS not in "NOUN", "PROPN"
-    x = remove_pos(nlp, x, pos_list)
+    # x = remove_pos(nlp, x, pos_list)
     # Case normalization
     x = x.lower()
     # Remove unicode characters
@@ -94,7 +72,7 @@ def text_cleaner(x, nlp, pos_list, lang="english"):
     # Return cleaned text
     return x
 
-nlp = spacy.load('en_core_web_sm')
+# nlp = spacy.load('en_core_web_sm')
 pos_list = ["NOUN","PROPN"]
 
 # Load pre-trained models
@@ -113,7 +91,7 @@ def form_example():
     # handle the POST request
     if request.method == 'POST':
         Question = request.form.get('Question')
-        Question_clean = text_cleaner(Question, nlp, pos_list, "english")
+        Question_clean = text_cleaner(Question, "english")
         X_tfidf = vectorizer.transform([Question_clean])
         predict = model.predict(X_tfidf)
         tags_prediction = multilabel_binarizer.inverse_transform(predict)
