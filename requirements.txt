@@ -1,6 +1,6 @@
 ﻿scipy==1.5.3
 requests
-flask==2.1.0
+flask==2.0.3
 numpy
 nltk
 joblib==1.1.0
