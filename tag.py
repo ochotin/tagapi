@@ -7,16 +7,18 @@ import re
 #import spacy
 #import en_core_web_sm
 import nltk
-#nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('stopwords')
-#nltk.download('all') 
 from nltk.corpus import stopwords
 from nltk.stem import wordnet
 from nltk.stem import WordNetLemmatizer
 #from nltk.tokenize import ToktokTokenizer
 from nltk.tokenize import word_tokenize
 from joblib import load
+
+#nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
+#nltk.download('all') 
+
 app = Flask(__name__)
 # Cleaning function for new question
 
@@ -77,7 +79,9 @@ pos_list = ["NOUN","PROPN"]
 
 # Load pre-trained models
 #model_path = "C:/Users/Houda/Documents/OpenClassrooms/P5/"
+print("before loading .........")
 vectorizer = load("./New_tfidf_vectorizer_1.joblib")
+print("after loading 1 .........")
 model = load("./New_model_1.joblib")
 multilabel_binarizer = load("./New_multilabel_binarizer_1.joblib")
 
@@ -106,4 +110,4 @@ def form_example():
            </form>'''
            
            
-# app.run(debug=True)
+app.run(debug=True)
