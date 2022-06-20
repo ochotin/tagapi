@@ -12,10 +12,11 @@ from nltk.stem import wordnet
 from nltk.stem import WordNetLemmatizer
 #from nltk.tokenize import ToktokTokenizer
 from nltk.tokenize import word_tokenize
-from joblib import load
+# from joblib import load
+import pickle
 
 #nltk.download('punkt')
-# nltk.download('wordnet')
+#nltk.download('wordnet')
 #nltk.download('stopwords')
 #nltk.download('all') 
 
@@ -78,12 +79,16 @@ def text_cleaner(x, lang):
 pos_list = ["NOUN","PROPN"]
 
 # Load pre-trained models
-#model_path = "C:/Users/Houda/Documents/OpenClassrooms/P5/"
-print("before loading .........")
-vectorizer = load("./New_tfidf_vectorizer_1.joblib")
-print("after loading 1 .........")
-model = load("./New_model_1.joblib")
-multilabel_binarizer = load("./New_multilabel_binarizer_1.joblib")
+with open('New_tfidf_vectorizer.pkl', "rb") as fp:   # Unpickling
+    vectorizer = pickle.load(fp)
+    
+with open('New_model.pkl', "rb") as fp:   # Unpickling
+    model = pickle.load(fp)
+    
+with open('New_multilabel_binarizer.pkl', "rb") as fp:   # Unpickling
+    multilabel_binarizer = pickle.load(fp)
+	
+print("after loading .........")
 
 
 @app.route('/')
@@ -99,9 +104,9 @@ def form_example():
         X_tfidf = vectorizer.transform([Question_clean]) 
         # predict = model.predict(X_tfidf)
         # tags_prediction = multilabel_binarizer.inverse_transform(predict)
-        tags_prediction = "Python ..."
+        tags_prediction = "Python ... 2"
         return render_template('index.html', tags_prediction=tags_prediction)
 
            
            
-# app.run(debug=True)
+app.run(debug=True)
