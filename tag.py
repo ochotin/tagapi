@@ -87,6 +87,9 @@ with open('New_model.pkl', "rb") as fp:   # Unpickling
     
 with open('New_multilabel_binarizer.pkl', "rb") as fp:   # Unpickling
     multilabel_binarizer = pickle.load(fp)
+
+with open('New_X_tfidf.pkl', "rb") as fp:   # Unpickling
+    New_X_tfidf = pickle.load(fp)
 	
 print("after loading .........")
 
@@ -101,12 +104,13 @@ def form_example():
     if request.method == 'POST':
         Question = request.form.get('Question')
         Question_clean = text_cleaner(Question, "english")
-        X_tfidf = vectorizer.transform([Question_clean]) 
-        # predict = model.predict(X_tfidf)
-        # tags_prediction = multilabel_binarizer.inverse_transform(predict)
-        tags_prediction = "Python ... 2"
+        # X_tfidf = vectorizer.transform([Question_clean]) 
+        predict = model.predict(X_tfidf)
+        tags_prediction = multilabel_binarizer.inverse_transform(predict)
+        # tags_prediction = "Python ... 2"
+		# tags_prediction = Question_clean
         return render_template('index.html', tags_prediction=tags_prediction)
 
            
            
-# app.run(debug=True)
+app.run(debug=True)
