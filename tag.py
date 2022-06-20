@@ -7,17 +7,17 @@ import re
 #import spacy
 #import en_core_web_sm
 import nltk
-from nltk.corpus import stopwords
-from nltk.stem import wordnet
-from nltk.stem import WordNetLemmatizer
+# from nltk.corpus import stopwords
+# from nltk.stem import wordnet
+# from nltk.stem import WordNetLemmatizer
 #from nltk.tokenize import ToktokTokenizer
 from nltk.tokenize import word_tokenize
 # from joblib import load
 import pickle
 
 #nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('stopwords')
+# nltk.download('wordnet')
+# nltk.download('stopwords')
 #nltk.download('all') 
 
 app = Flask(__name__)
@@ -25,7 +25,7 @@ app = Flask(__name__)
 
 
 #def text_cleaner(x, nlp, pos_list, lang="english"):
-def text_cleaner(x, lang):
+def text_cleaner(x):
     """Function allowing to carry out the preprossessing on the textual data. 
         It allows you to remove extra spaces, unicode characters, 
         English contractions, links, punctuation and numbers.
@@ -64,19 +64,19 @@ def text_cleaner(x, lang):
     # Tokenization
     x = nltk.tokenize.word_tokenize(x)
     # List of stop words in select language from NLTK
-    stop_words = stopwords.words(lang)
+    # stop_words = stopwords.words("english")
     # Remove stop words
-    x = [word for word in x if word not in stop_words 
-         and len(word)>2]
+    # x = [word for word in x if word not in stop_words 
+    #     and len(word)>2]
     # Lemmatizer
-    wn = nltk.WordNetLemmatizer()
-    x = [wn.lemmatize(word) for word in x]
+    # wn = nltk.WordNetLemmatizer()
+    # x = [wn.lemmatize(word) for word in x]
     
     # Return cleaned text
     return x
 
 # nlp = spacy.load('en_core_web_sm')
-pos_list = ["NOUN","PROPN"]
+# pos_list = ["NOUN","PROPN"]
 
 # Load pre-trained models
 with open('New_tfidf_vectorizer.pkl', "rb") as fp:   # Unpickling
@@ -103,7 +103,7 @@ def form_example():
     # handle the POST request
     if request.method == 'POST':
         Question = request.form.get('Question')
-        Question_clean = text_cleaner(Question, "english")
+        Question_clean = text_cleaner(Question")
         # X_tfidf = vectorizer.transform([Question_clean]) 
         # predict = model.predict(X_tfidf)
         # predict = model.predict(New_X_tfidf)		
