@@ -49,7 +49,7 @@ def text_cleaner(x):
     # Case normalization
     x = x.lower()
     # Remove unicode characters
-    x = x.encode("ascii", "ignore").decode()
+    # x = x.encode("ascii", "ignore").decode()
     # Remove English contractions
     x = re.sub("\'\w+", '', x)
     # Remove ponctuation but not # (for C# for example)
