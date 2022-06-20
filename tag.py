@@ -102,14 +102,14 @@ def loadPage():
 def form_example():
     # handle the POST request
     if request.method == 'POST':
-        # Question = request.form.get('Question')
-        # Question_clean = text_cleaner(Question, "english")
+        Question = request.form.get('Question')
+        Question_clean = text_cleaner(Question, "english")
         # X_tfidf = vectorizer.transform([Question_clean]) 
         # predict = model.predict(X_tfidf)
-		# predict = model.predict(New_X_tfidf)		
+        # predict = model.predict(New_X_tfidf)		
         # tags_prediction = multilabel_binarizer.inverse_transform(predict)
         tags_prediction = "Python ... 2"
-		# tags_prediction = Question_clean
+        # tags_prediction = Question_clean
         return render_template('index.html', tags_prediction=tags_prediction)
 
            
