@@ -103,7 +103,7 @@ def form_example():
     # handle the POST request
     if request.method == 'POST':
         Question = request.form.get('Question')
-        Question_clean = text_cleaner(Question")
+        Question_clean = text_cleaner(Question)
         # X_tfidf = vectorizer.transform([Question_clean]) 
         # predict = model.predict(X_tfidf)
         # predict = model.predict(New_X_tfidf)		
