@@ -82,7 +82,7 @@ pos_list = ["NOUN","PROPN"]
 print("before loading .........")
 vectorizer = load("./New_tfidf_vectorizer_1.joblib")
 print("after loading 1 .........")
-# model = load("./New_model_1.joblib")
+model = load("./New_model_1.joblib")
 # multilabel_binarizer = load("./New_multilabel_binarizer_1.joblib")
 
 
