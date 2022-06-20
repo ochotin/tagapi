@@ -16,8 +16,8 @@ from nltk.tokenize import word_tokenize
 import pickle
 
 #nltk.download('punkt')
-#nltk.download('wordnet')
-#nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('stopwords')
 #nltk.download('all') 
 
 app = Flask(__name__)
@@ -110,7 +110,7 @@ def form_example():
         # tags_prediction = multilabel_binarizer.inverse_transform(predict)
         tags_prediction = "Python ... 2"
         # tags_prediction = Question_clean
-        return render_template('index.html', tags_prediction=tags_prediction)
+        return render_template('index.html', tags_prediction=Question)
 
            
            
