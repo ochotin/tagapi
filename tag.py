@@ -62,7 +62,7 @@ def text_cleaner(x):
     x = re.sub('\s+', ' ', x)
         
     # Tokenization
-    x = nltk.tokenize.word_tokenize(x)
+    x = word_tokenize(x)
     # List of stop words in select language from NLTK
     # stop_words = stopwords.words("english")
     # Remove stop words
@@ -76,7 +76,7 @@ def text_cleaner(x):
     return x
 	
 def text_cleaner2(x):
-    x = nltk.tokenize.word_tokenize(x)
+    x = word_tokenize(x)
     return x
 
 # nlp = spacy.load('en_core_web_sm')
