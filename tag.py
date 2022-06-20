@@ -74,6 +74,10 @@ def text_cleaner(x):
     
     # Return cleaned text
     return x
+	
+def text_cleaner2(x):
+    x = nltk.tokenize.word_tokenize(x)
+    return x
 
 # nlp = spacy.load('en_core_web_sm')
 # pos_list = ["NOUN","PROPN"]
@@ -103,7 +107,7 @@ def form_example():
     # handle the POST request
     if request.method == 'POST':
         Question = request.form.get('Question')
-        Question_clean = text_cleaner(Question)
+        Question_clean = text_cleaner2(Question)
         # X_tfidf = vectorizer.transform([Question_clean]) 
         # predict = model.predict(X_tfidf)
         # predict = model.predict(New_X_tfidf)		
