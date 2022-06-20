@@ -105,7 +105,8 @@ def form_example():
         Question = request.form.get('Question')
         Question_clean = text_cleaner(Question, "english")
         # X_tfidf = vectorizer.transform([Question_clean]) 
-        predict = model.predict(X_tfidf)
+        # predict = model.predict(X_tfidf)
+		predict = model.predict(New_X_tfidf)		
         tags_prediction = multilabel_binarizer.inverse_transform(predict)
         # tags_prediction = "Python ... 2"
 		# tags_prediction = Question_clean
