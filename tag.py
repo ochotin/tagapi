@@ -15,8 +15,8 @@ from nltk.tokenize import word_tokenize
 from joblib import load
 
 #nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('stopwords')
+# nltk.download('wordnet')
+#nltk.download('stopwords')
 #nltk.download('all') 
 
 app = Flask(__name__)
@@ -90,7 +90,7 @@ multilabel_binarizer = load("./New_multilabel_binarizer_1.joblib")
 def loadPage():
      return render_template('index.html')
 
-@app.route('/tag_pred', methods=['GET', 'POST'])
+@app.route('/tag_pred', methods=['POST'])
 def form_example():
     # handle the POST request
     if request.method == 'POST':
@@ -101,13 +101,6 @@ def form_example():
         tags_prediction = multilabel_binarizer.inverse_transform(predict)
         return render_template('index.html', tags_prediction=tags_prediction)
 
-    # otherwise handle the GET request
-    return '''
-           <form method="POST">
-               <div><label>Question: <input type="text" name="Question"></label></div>
-               
-               <input type="submit" value="Submit">
-           </form>'''
            
            
 # app.run(debug=True)
