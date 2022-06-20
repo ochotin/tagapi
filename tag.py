@@ -88,8 +88,8 @@ with open('New_model.pkl', "rb") as fp:   # Unpickling
 with open('New_multilabel_binarizer.pkl', "rb") as fp:   # Unpickling
     multilabel_binarizer = pickle.load(fp)
 
-with open('New_X_tfidf.pkl', "rb") as fp:   # Unpickling
-    New_X_tfidf = pickle.load(fp)
+# with open('New_X_tfidf.pkl', "rb") as fp:   # Unpickling
+#    New_X_tfidf = pickle.load(fp)
 	
 print("after loading .........")
 
@@ -106,9 +106,9 @@ def form_example():
         Question_clean = text_cleaner(Question, "english")
         # X_tfidf = vectorizer.transform([Question_clean]) 
         # predict = model.predict(X_tfidf)
-		predict = model.predict(New_X_tfidf)		
-        tags_prediction = multilabel_binarizer.inverse_transform(predict)
-        # tags_prediction = "Python ... 2"
+		# predict = model.predict(New_X_tfidf)		
+        # tags_prediction = multilabel_binarizer.inverse_transform(predict)
+        tags_prediction = "Python ... 2"
 		# tags_prediction = Question_clean
         return render_template('index.html', tags_prediction=tags_prediction)
 
