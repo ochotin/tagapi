@@ -80,10 +80,10 @@ pos_list = ["NOUN","PROPN"]
 # Load pre-trained models
 #model_path = "C:/Users/Houda/Documents/OpenClassrooms/P5/"
 print("before loading .........")
-# vectorizer = load("./New_tfidf_vectorizer_1.joblib")
+vectorizer = load("./New_tfidf_vectorizer_1.joblib")
 print("after loading 1 .........")
-# model = load("./New_model_1.joblib")
-# multilabel_binarizer = load("./New_multilabel_binarizer_1.joblib")
+model = load("./New_model_1.joblib")
+multilabel_binarizer = load("./New_multilabel_binarizer_1.joblib")
 
 
 @app.route('/')
@@ -94,12 +94,11 @@ def loadPage():
 def form_example():
     # handle the POST request
     if request.method == 'POST':
-        # Question = request.form.get('Question')
-        # Question_clean = text_cleaner(Question, "english")
-        # X_tfidf = vectorizer.transform([Question_clean])
-        # predict = model.predict(X_tfidf)
-        # tags_prediction = multilabel_binarizer.inverse_transform(predict)
-        tags_prediction = "Python ..."
+        Question = request.form.get('Question')
+        Question_clean = text_cleaner(Question, "english")
+        X_tfidf = vectorizer.transform([Question_clean])
+        predict = model.predict(X_tfidf)
+        tags_prediction = multilabel_binarizer.inverse_transform(predict)
         return render_template('index.html', tags_prediction=tags_prediction)
 
            

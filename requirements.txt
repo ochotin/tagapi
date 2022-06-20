@@ -1,8 +1,7 @@
 ﻿scipy
+numpy
+sklearn
 requests
 flask
-numpy
 nltk
-joblib
-sklearn
 gunicorn
