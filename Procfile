@@ -1,2 +1,1 @@
-web: gunicorn tag:app
-
+web: gunicorn tag:app --bind 0.0.0.0:$PORT --worker-class uvicorn.workers.UvicornWorker
