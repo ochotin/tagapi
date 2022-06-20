@@ -1,8 +1,8 @@
-﻿scipy==1.5.3
+﻿scipy
 requests
-flask==2.0.3
+flask
 numpy
 nltk
-joblib==1.1.0
+joblib
 sklearn
 gunicorn
